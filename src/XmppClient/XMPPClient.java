@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  * This class is called with each new agent created and added to the list, to
  * create it's XMPP client that will listen to Finesse
  */
-public class FinesseXMPPClient implements Runnable {
+public class XMPPClient implements Runnable {
 
     public static ResourceBundle properties;
     XMPPConnection connection;
@@ -29,7 +29,7 @@ public class FinesseXMPPClient implements Runnable {
     String fileName;
     String path;
 
-    public FinesseXMPPClient(String id, String password, String fileName) {
+    public XMPPClient(String id, String password, String fileName) {
         this.id = id;
         this.password = password;
         this.fileName = fileName;
