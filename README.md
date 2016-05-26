@@ -4,3 +4,5 @@ A Simple client for xmpp subscription
 * output of each thread in separate file 
 * Configurable variables 
 * Prettified XML 
+
+## IntelliJ Project 
