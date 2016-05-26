@@ -5,4 +5,4 @@ A Simple client for xmpp subscription
 * Configurable variables 
 * Prettified XML 
 
-## IntelliJ Project 
+#### IntelliJ Project 
