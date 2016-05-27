@@ -20,27 +20,28 @@ import java.util.ResourceBundle;
  * This class is called with each new agent created and added to the list, to
  * create it's XMPP client that will listen to Finesse
  */
-public class XMPPClient implements Runnable {
+class XMPPClient implements Runnable {
 
-    public static ResourceBundle properties;
-    XMPPConnection connection;
-    String id;
-    String password;
-    String fileName;
-    String path;
+    private static ResourceBundle properties;
+    private int i = 0;
+    private XMPPConnection connection;
+    private String id;
+    private String password;
+    private String fileName;
+    private String path;
 
-    public XMPPClient(String id, String password, String fileName) {
+    XMPPClient(String id, String password, String fileName) {
         this.id = id;
         this.password = password;
         this.fileName = fileName;
         properties = ResourceBundle.getBundle("config.config");
-        path = properties.getString("EVENT_LOCATION");
+        path = properties.getString("EVENT_FILE_LOCATION");
     }
 
-    public void login(String userName, String password) throws XMPPException {
-
+    private void login(String userName, String password) throws XMPPException {
 
         try {
+            //    System.out.println("userName = [" + userName + "], password = [" + password + "]");
             String serverAddress = properties.getString("SERVER_ADDRESS");
             int port = Integer.parseInt(properties.getString("SERVER_PORT"));
 
@@ -62,17 +63,27 @@ public class XMPPClient implements Runnable {
             String prettyXML = PrettifyXML(packet.toXML());
             writeXMLFile(prettyXML);
         };
-        while (true) {
-            connection.addPacketListener(myPacketListener, filter);
+
+        try {
+            while (true) {
+
+                try {
+                    connection.addPacketListener(myPacketListener, filter);
+                } catch (Exception e) {
+                    System.out.println("e.getMessage() = " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("e.getMessage() = " + e.getMessage());
         }
     }
 
     private void writeXMLFile(String xml) {
-
+        String packetDivider = "<==============================Event " + i++ + " Capture=============================>\n";
         try {
-//            PrintWriter pw = new PrintWriter(new FileOutputStream(new File(path + File.pathSeparator + fileName), true /* append = true */));
             PrintWriter pw = new PrintWriter(new FileOutputStream(new File(fileName), true /* append = true */));
             pw.append(xml);
+            pw.append(packetDivider);
             pw.close();
         } catch (FileNotFoundException e) {
             System.out.println("e.getMessage() = " + e.getMessage());
