@@ -4,6 +4,7 @@ import org.jivesoftware.smack.*;
 import org.jivesoftware.smack.filter.MessageTypeFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Packet;
 import org.w3c.dom.Node;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
@@ -58,11 +59,22 @@ class XMPPClient implements Runnable {
             System.out.println("xmppEX = " + xmppEX.getMessage());
 
         }
-        PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
+        /*PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
         PacketListener myPacketListener = packet -> {
             String prettyXML = PrettifyXML(packet.toXML());
             writeXMLFile(prettyXML);
+        };*/
+
+        PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
+        PacketListener myPacketListener = new PacketListener() {
+            @Override
+            public void processPacket(Packet packet) {
+                String prettyXML = PrettifyXML(packet.toXML());
+                writeXMLFile(prettyXML);
+                System.out.println(prettyXML);
+            }
         };
+
 
         try {
             while (true) {
