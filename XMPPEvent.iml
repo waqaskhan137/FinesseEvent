@@ -19,59 +19,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library">
-      <library name="smack.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smack.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="smackx.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="smackx_debug.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx_debug.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="smackx_jingle.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx_jingle.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="smackx-debug.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx-debug.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="smackx-jingle.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx-jingle.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="smack" level="project" />
   </component>
 </module>
