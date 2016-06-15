@@ -1,7 +1,8 @@
 # XMPPEvent
 A Simple client for xmpp subscription
+* Add user in a xml file agents.xml 
 * Multi threaded users 
-* output of each thread in separate file 
+* output of each agent thread in a separate file 
 * Configurable variables 
 * Prettified XML 
 
