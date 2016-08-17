@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="EclipseModuleManager">
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smack.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx_debug.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx_jingle.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx-debug.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../Finesse Events/Smack Old APIs/smackx-jingle.jar!/" />
-    <src_description expected_position="0">
-      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
-    </src_description>
-  </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/bin" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/config" type="java-resource" />
     </content>
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="smack" level="project" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="module-library">
+      <library name="testng">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/testng/lib/testng.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/testng/lib/jcommander.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
