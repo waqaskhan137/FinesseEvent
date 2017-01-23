@@ -16,6 +16,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ResourceBundle;
+
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -43,7 +44,7 @@ class XMPPClient implements Runnable {
     private void login(String userName, String password) throws XMPPException {
 
         try {
-            //    System.out.println("userName = [" + userName + "], password = [" + password + "]");
+            //    ChatLogger.LogInfo("XMPPClient","userName = [" + userName + "], password = [" + password + "]");
             String serverAddress = properties.getString("SERVER_ADDRESS");
             int port = Integer.parseInt(properties.getString("SERVER_PORT"));
 
@@ -53,22 +54,17 @@ class XMPPClient implements Runnable {
             SASLAuthentication.supportSASLMechanism("PLAIN", 0);
             connection.login(userName, password);
 
-//            PubSubManager manager = new PubSubManager(connection,"pubsub.uccx11pk.ef.com");
-//            DiscoverInfo supportedFeatures = manager.getSupportedFeatures();
-//            List<Subscription> subscriptions = manager.getSubscriptions();
+            //initializing chat for testing
+            initChat("test", "Waqas");
+
 
         } catch (XMPPException xmppEX) {
-            System.out.println("xmppEX.getMessage() = " + xmppEX.getMessage());
+            ChatLogger.LogInfo("XMPPClient","xmppEX.getMessage() = " + xmppEX.getMessage());
 
         } catch (Exception xmppEX) {
-            System.out.println("xmppEX = " + xmppEX.getMessage());
+            ChatLogger.LogInfo("XMPPClient","xmppEX = " + xmppEX.getMessage());
 
         }
-        /*PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
-        PacketListener myPacketListener = packet -> {
-            String prettyXML = PrettifyXML(packet.toXML());
-            writeXMLFile(prettyXML);
-        };*/
 
         PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
         PacketListener myPacketListener = new PacketListener() {
@@ -76,7 +72,7 @@ class XMPPClient implements Runnable {
             public void processPacket(Packet packet) {
                 String prettyXML = PrettifyXML(packet.toXML());
                 writeXMLFile(prettyXML);
-                System.out.println(prettyXML);
+                ChatLogger.LogInfo("XMPPClient", prettyXML);
             }
         };
 
@@ -87,11 +83,25 @@ class XMPPClient implements Runnable {
                 try {
                     connection.addPacketListener(myPacketListener, filter);
                 } catch (Exception e) {
-                    System.out.println("e.getMessage() = " + e.getMessage());
+                    ChatLogger.LogInfo("XMPPClient","e.getMessage() = " + e.getMessage());
                 }
             }
         } catch (Exception e) {
-            System.out.println("e.getMessage() = " + e.getMessage());
+            ChatLogger.LogInfo("XMPPClient","e.getMessage() = " + e.getMessage());
+        }
+    }
+
+    private void initChat(String chatRoomName, String chatUserName) {
+
+        try {
+            MultiUserChat chatRoom = new MultiUserChat(connection, chatRoomName);
+
+            chatRoom.join(chatUserName);
+            for (int i = 0; i < 10; i++) {
+                chatRoom.sendMessage("Hello World" + chatUserName);
+            }
+        } catch (XMPPException e) {
+            e.printStackTrace();
         }
     }
 
@@ -103,7 +113,7 @@ class XMPPClient implements Runnable {
             pw.append(packetDivider);
             pw.close();
         } catch (FileNotFoundException e) {
-            System.out.println("e.getMessage() = " + e.getMessage());
+            ChatLogger.LogInfo("XMPPClient","e.getMessage() = " + e.getMessage());
         }
 
     }
@@ -125,20 +135,20 @@ class XMPPClient implements Runnable {
             return writer.writeToString(document);
 
         } catch (ParserConfigurationException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
 
         } catch (SAXException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         } catch (IOException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         } catch (InstantiationException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         } catch (IllegalAccessException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         } catch (ClassCastException ex) {
-            System.out.println("ex.getMessage() = " + ex.getMessage());
+            ChatLogger.LogInfo("XMPPClient","ex.getMessage() = " + ex.getMessage());
         }
 
         return _source;
