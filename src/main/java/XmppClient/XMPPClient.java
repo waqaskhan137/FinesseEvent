@@ -5,6 +5,7 @@ import org.jivesoftware.smack.filter.MessageTypeFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smackx.packet.DiscoverInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
@@ -51,6 +52,10 @@ class XMPPClient implements Runnable {
             connection.connect();
             SASLAuthentication.supportSASLMechanism("PLAIN", 0);
             connection.login(userName, password);
+
+//            PubSubManager manager = new PubSubManager(connection,"pubsub.uccx11pk.ef.com");
+//            DiscoverInfo supportedFeatures = manager.getSupportedFeatures();
+//            List<Subscription> subscriptions = manager.getSubscriptions();
 
         } catch (XMPPException xmppEX) {
             System.out.println("xmppEX.getMessage() = " + xmppEX.getMessage());
