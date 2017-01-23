@@ -20,4 +20,22 @@
         </plugins>
     </build>
 
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/jivesoftware/smack -->
+        <dependency>
+            <groupId>jivesoftware</groupId>
+            <artifactId>smack</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/jivesoftware/smackx -->
+        <dependency>
+            <groupId>jivesoftware</groupId>
+            <artifactId>smackx</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+    </dependencies>
 </project>
